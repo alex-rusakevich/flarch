@@ -3,6 +3,7 @@ import argparse
 from flarch.commands.format_drive import format_drive
 from flarch.commands.nullify_drive import nullify_drive
 from flarch.commands.write_image import write_image
+from flarch.utils.commands_exist import ensure_commands_exist
 
 
 def main():
@@ -40,6 +41,8 @@ def main():
     # endregion
 
     args = parser.parse_args()
+
+    ensure_commands_exist(["blockdev", "mkfs.vfat", "dd", "pv"])
 
     if args.command == "nullify":
         nullify_drive(args.drive)

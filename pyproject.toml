@@ -62,3 +62,6 @@ exclude_lines = [
 
 [project.scripts]
 flarch = "flarch.cli:main"
+
+[tool.hatch.envs.default]
+platforms = ["linux", "macos"]
