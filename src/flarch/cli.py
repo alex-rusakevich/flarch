@@ -13,6 +13,12 @@ def main():
     # region Format floppy
     format_parser = subparsers.add_parser("format", help="Format the floppy into FAT")
     format_parser.add_argument("drive", type=str, help="Floppy drive")
+    format_parser.add_argument(
+        "-N",
+        "--skip-nullification",
+        action="store_true",
+        help="Skip drive nullification. Faster, but the resulting floppy may work unexpectedly",
+    )
     # endregion
 
     # region Nullify floppy
@@ -48,7 +54,9 @@ def main():
         nullify_drive(args.drive)
 
     if args.command == "format":
-        nullify_drive(args.drive)
+        if not args.skip_nullification:
+            nullify_drive(args.drive)
+
         format_drive(args.drive)
 
     if args.command == "write":
