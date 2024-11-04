@@ -12,6 +12,6 @@ stdout = result.stdout
 
 def size_of_drive(safe_drive_name):
     result = subprocess.run(
-        "blockdev --getsize64 /dev/sda", capture_output=True, shell=True
+        f"blockdev --getsize64 {safe_drive_name}", capture_output=True, shell=True
     )
     return int(result.stdout)
